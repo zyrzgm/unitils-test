@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public User findUserByUserName(final String userName) {
-		String sqlStr = " SELECT user_id,user_name,credits "
+		String sqlStr = " SELECT user_id,user_name,credits, password "
 				+ " FROM t_user WHERE user_name =? ";
 		final User user = new User();
 		jdbcTemplate.query(sqlStr, new Object[]{userName},
@@ -37,9 +37,15 @@ public class UserDaoImpl implements UserDao {
 						user.setUserId(rs.getInt("user_id"));
 						user.setUserName(userName);
 						user.setCredits(rs.getInt("credits"));
+						user.setPassword(rs.getString("password"));
 					}
 				});
-		return user;
+		
+		if (user.getUserId() == 0) {
+			return null;
+		} else {
+			return user;
+		}
 	}
 
 	public void updateLoginInfo(User user) {
@@ -50,9 +56,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public void save(User user) {
-		String sqlStr = " INSERT INTO t_user(user_id,user_name,password) "
-				+ " VALUES(?,?,?)";
+		String sqlStr = " INSERT INTO t_user(user_id,user_name,password, credits, last_visit, last_ip) "
+				+ " VALUES(?,?,?, ?, ?, ?)";
 		jdbcTemplate.update(sqlStr, new Object[]{user.getUserId(),
-				user.getUserName(), user.getPassword()});
+				user.getUserName(), user.getPassword(), user.getCredits(), user.getLastVisit(), user.getLastIp()});
 	}
 }

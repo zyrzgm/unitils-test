@@ -7,7 +7,9 @@ import static org.junit.Assert.assertNull;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.unitils.UnitilsJUnit4;
+import org.unitils.UnitilsJUnit4TestClassRunner;
 import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.dbunit.annotation.ExpectedDataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
@@ -20,13 +22,15 @@ import com.baobaotao.domain.User;
 @SpringApplicationContext( {"baobaotao-dao.xml" })
 public class UserDaoTest extends UnitilsJUnit4 {
 
-	@SpringBean("jdbcUserDao")
+//	@SpringBean("jdbcUserDao")
+	@SpringBean("hibernateUserDao")
 	private UserDao userDao;
 
 
 	@Test
 	@DataSet("BaobaoTao.Users.xls")//准备数据 
 	public void findUserByUserName() {
+		//TODO "tony" 不应该硬编码
 		User user = userDao.findUserByUserName("tony");
 		assertNull("不存在用户名为tony的用户!", user);
 		user = userDao.findUserByUserName("jan");
@@ -39,6 +43,7 @@ public class UserDaoTest extends UnitilsJUnit4 {
 	// 验证数据库保存的正确性
 	@Test
 	@ExpectedDataSet("BaobaoTao.ExpectedSaveUser.xls")// 准备验证数据
+	@DataSet("BaobaoTao.SaveUser22.xls")//按道理不需要准备数据，只需执行建表脚本即可，但不用@DataSet，则建表脚本没执行  //TODO
 	public void saveUser()throws Exception  {
 		/**
 		硬编码创建测试实体
@@ -58,11 +63,11 @@ public class UserDaoTest extends UnitilsJUnit4 {
 	//验证数据库保存的正确性
 	@Test
 	@ExpectedDataSet("BaobaoTao.ExpectedSaveUsers.xls")// 准备验证数据
+	@DataSet("BaobaoTao.SaveUser22.xls")//准备数据 
 	public void saveUsers()throws Exception  {
 		List<User> users  = XlsDataSetBeanFactory.createBeans("BaobaoTao.SaveUsers.xls", "t_user", User.class);
 		for(User u:users){
 		     userDao.save(u);
 		}
 	}
-
 }

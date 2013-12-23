@@ -29,8 +29,7 @@ public class HibernateUserDaoImpl  implements UserDao{
 	}
 
 	public void save(User user) {
-		// TODO Auto-generated method stub
-		
+		this.hibernateTemplate.save(user);
 	}
 
 	public void updateLoginInfo(User user) {

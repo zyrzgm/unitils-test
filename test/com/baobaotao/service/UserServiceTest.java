@@ -37,7 +37,8 @@ public class UserServiceTest extends UnitilsJUnit4 {
 
 	}
 	
-	//@Test
+	//单元测试
+	@Test
 	public void hasMatchUser() {
 		 User user = new User();
 		 user.setUserName("tom");
@@ -52,7 +53,8 @@ public class UserServiceTest extends UnitilsJUnit4 {
 	     verify(userDao,times(1)).getMatchCount("tom", "1234");
 	}
 	
-	//@Test
+	//单元测试
+	@Test
 	public void findUserByUserName() {
 		 User user = new User();
 		 user.setUserName("tom");
@@ -69,7 +71,7 @@ public class UserServiceTest extends UnitilsJUnit4 {
 	     verify(userDao,times(1)).findUserByUserName("tom");
 	}
 	
-	
+	//集成测试
 	@Test
 	@DataSet("BaobaoTao.SaveUsers.xls")// 准备验证数据
 	public void loginSuccess() {

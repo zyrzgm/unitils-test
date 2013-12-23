@@ -1,6 +1,16 @@
 package com.baobaotao.web;
 
-import org.junit.*;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -10,10 +20,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
 import org.unitils.UnitilsJUnit4;
+import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 import com.baobaotao.domain.User;
 
@@ -43,7 +52,7 @@ public class LoginControllerTest extends UnitilsJUnit4 {
 		response = new MockHttpServletResponse();
 	}
 
-	//@Test
+	@Test
 	public void loginCheck() {
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("userName", "john");
@@ -65,10 +74,11 @@ public class LoginControllerTest extends UnitilsJUnit4 {
 
 	// ⑤ 测试LoginController#loginCheck()方法
 	@Test
+	@DataSet("loginCheckByMock.xls")
 	public void loginCheckByMock() throws Exception {
 		request.setRequestURI("/loginCheck.html");
 		request.addParameter("userName", "tom"); // ⑥ 设置请求URL及参数
-		request.addParameter("password", "1234");
+		request.addParameter("password", "123456");
 
 		// ⑦ 向控制发起请求 ” /loginCheck.html”
 		ModelAndView mav = handlerAdapter.handle(request, response, controller);
@@ -84,6 +94,25 @@ public class LoginControllerTest extends UnitilsJUnit4 {
 		assertThat(user.getCredits(), greaterThan(5));
 	}
 	
+	@Test
+	@DataSet("loginCheckByMock.xls")
+	public void loginCheckByMockWithInvalidPassword() throws Exception {
+		request.setRequestURI("/loginCheck.html");
+		request.addParameter("userName", "tom"); // ⑥ 设置请求URL及参数
+		//使用错误密码
+		request.addParameter("password", "12");
+
+		// ⑦ 向控制发起请求 ” /loginCheck.html”
+		ModelAndView mav = handlerAdapter.handle(request, response, controller);
+		User user = (User) request.getSession().getAttribute("user");
+
+	
+		assertNotNull(mav);
+		assertEquals(mav.getViewName(), "login");
+		assertNull(user);
+		assertThat(user, nullValue());
+		
+	}
 	public void test(){
 		User u = new User();
 		String username = (String)ReflectionTestUtils.getField(u, "userName");

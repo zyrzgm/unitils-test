@@ -16,7 +16,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("user") 
 public class User implements Serializable{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//TODO
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	protected int userId;
 
