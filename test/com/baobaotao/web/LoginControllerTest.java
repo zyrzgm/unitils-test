@@ -58,15 +58,15 @@ public class LoginControllerTest extends UnitilsJUnit4 {
 		map.add("userName", "john");
 		map.add("password", "1234");
 		String result = restTemplate.postForObject(
-				"http://localhost/chapter16/loginCheck.html", map, String.class);
+				"http://localhost:4040/loginCheck.html", map, String.class);
 		assertNotNull(result);
 		assertThat(result, containsString("用户名或密码错误"));
 
 		map.clear();
 		map.add("userName", "tom");
-		map.add("password", "1234");
+		map.add("password", "123456");
 	    result = restTemplate.postForObject(
-				"http://localhost/chapter16/loginCheck.html", map, String.class);
+				"http://localhost:4040/loginCheck.html", map, String.class);
 		System.out.println(result);
 	    assertNotNull(result);
 		assertThat(result, containsString("tom,欢迎您进入宝宝淘论坛"));

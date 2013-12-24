@@ -26,7 +26,7 @@ public class LoginControllerTest {
 		//完全装载页面后将控制返回给测试脚本
 		//navigate().to()和get()功能完全一样。
 		//FIXME 暂时硬编码
-		driver.get("http://localhost/chapter16/index.html"); 
+		driver.get("http://localhost:4040/index.html"); 
 
 		//（XPATH返回第一个匹配到的元素，如果没有匹配到，抛出NoSuchElementException）
 		//element = driver.findElement(By.xpath( "//input[@id=’xxx’]" ));
@@ -35,7 +35,7 @@ public class LoginControllerTest {
 		
 		//任何页面元素都可以调用sendKeys，
 		userName.sendKeys("tom");     
-		password.sendKeys("1234");  
+		password.sendKeys("123456");  
 		
 		//提交表单
 		driver.findElement(By.id( "loginBtn" )).click();
