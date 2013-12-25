@@ -129,6 +129,18 @@
 			<version>1.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+
 		<!-- test dependency -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -237,14 +249,7 @@
 			<version>1.8.0</version>
 			<scope>test</scope>
 		</dependency>
-
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.5</version>
-			<scope>test</scope>
-		</dependency>
+		
 		<!-- <dependency> -->
 		<!-- <groupId>org.slf4j</groupId> -->
 		<!-- <artifactId>slf4j-api</artifactId> -->
@@ -258,11 +263,9 @@
 		<testSourceDirectory>test</testSourceDirectory>
 		<resources>
 			<resource>
+				<!-- TODO 可以去掉不？ -->
 				<directory>resources</directory>
-			</resource>
-			<resource>
-				<directory>src</directory>
-			</resource>
+			</resource>			
 		</resources>
 
 		<plugins>
