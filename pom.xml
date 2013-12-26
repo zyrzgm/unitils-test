@@ -26,12 +26,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
-			<!-- <exclusions> -->
-			<!-- <exclusion> -->
-			<!-- <groupId>commons-logging</groupId> -->
-			<!-- <artifactId>commons-logging</artifactId> -->
-			<!-- </exclusion> -->
-			<!-- </exclusions> -->
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -59,6 +59,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
 			<version>3.3.0.ga</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -128,16 +134,16 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.5</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.5</version>
 		</dependency>
 
@@ -167,6 +173,10 @@
 					<artifactId>commons-dbcp</artifactId>
 					<groupId>commons-dbcp</groupId>
 				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -175,6 +185,12 @@
 			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
 			<version>2.4.9</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -236,6 +252,12 @@
 			<artifactId>selenium-java</artifactId>
 			<version>2.37.1</version>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.opera</groupId>
@@ -248,8 +270,14 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.8.0</version>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		
+
 		<!-- <dependency> -->
 		<!-- <groupId>org.slf4j</groupId> -->
 		<!-- <artifactId>slf4j-api</artifactId> -->
@@ -265,7 +293,7 @@
 			<resource>
 				<!-- TODO 可以去掉不？ -->
 				<directory>resources</directory>
-			</resource>			
+			</resource>
 		</resources>
 
 		<plugins>
