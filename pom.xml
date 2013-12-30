@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.zgm</groupId>
-	<artifactId>dao-test</artifactId>
+	<artifactId>unitils-test</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>dao</name>
+	<name>unitils-test</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -134,7 +134,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -146,7 +146,7 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.logback-extensions</groupId>
 			<artifactId>logback-ext-spring</artifactId>
@@ -196,6 +196,10 @@
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-api</artifactId>
 				</exclusion>
+<!-- 				<exclusion> -->
+<!-- 					<groupId>org.apache.poi</groupId> -->
+<!-- 					<artifactId>poi</artifactId> -->
+<!-- 				</exclusion> -->
 			</exclusions>
 		</dependency>
 
@@ -284,15 +288,15 @@
 			</exclusions>
 		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.slf4j</groupId> -->
-		<!-- <artifactId>slf4j-api</artifactId> -->
-		<!-- <version>1.6.4</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.2-FINAL</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>dao-test</finalName>
+		<finalName>unitils-test-test</finalName>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
 		<resources>
